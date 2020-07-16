@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {StatusBar} from 'react-native';
+import {StatusBar, TouchableOpacity} from 'react-native';
 import {Button} from 'react-native-paper';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import styled from 'styled-components/native';
 import LoginBg from '../components/LoginBg';
 import {SafeAreaView} from 'react-native-safe-area-context';
-
+import KakaoLogins from '@react-native-seoul/kakao-login';
 const Wrapper = styled.View`
   position: absolute;
   top: 0;
@@ -58,6 +58,27 @@ const IconName = styled.Text`
 `;
 
 class LoginScreen extends Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    console.log(KakaoLogins);
+  }
+  kakaoLogin = () => {
+    KakaoLogins.login()
+      .then((result) => {
+        KakaoLogins.getProfile()
+          .then((result) => {
+            console.log(result);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   render() {
     return (
       <>
@@ -67,7 +88,7 @@ class LoginScreen extends Component {
           <Button
             mode="contained"
             mode="dark"
-            onPress={() => this.props.navigation.navigate("이메일로그인")}
+            onPress={() => this.props.navigation.navigate('이메일로그인')}
             style={{
               borderRadius: 4,
               backgroundColor: '#ffffff',
@@ -106,8 +127,13 @@ class LoginScreen extends Component {
                 <ModalContentTitle>SNS 계정으로 로그인</ModalContentTitle>
                 <ModalSocialContainer>
                   <ModalSocial>
-                    <Icon source={require('../assets/kakaotalk.png')} />
-                    <IconName>카카오톡</IconName>
+                    <TouchableOpacity
+                      onPress={() => {
+                        this.kakaoLogin();
+                      }}>
+                      <Icon source={require('../assets/kakaotalk.png')} />
+                      <IconName>카카오톡</IconName>
+                    </TouchableOpacity>
                   </ModalSocial>
                   <ModalSocial>
                     <Icon source={require('../assets/facebook.png')} />
