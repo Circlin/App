@@ -35,7 +35,7 @@ const App = () => {
           <Header />
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
+              <Text style={styles.footer}>TEst: Hermes</Text>
             </View>
           )}
           <View style={styles.body}>
