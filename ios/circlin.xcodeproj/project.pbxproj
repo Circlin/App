@@ -161,7 +161,6 @@
 				F1450E7FDAE180FCF9D1E80D /* Pods-circlin-tvOSTests.debug.xcconfig */,
 				E319B9B9E09CBADD3A4B902B /* Pods-circlin-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -200,12 +199,11 @@
 			sourceTree = "<group>";
 		};
 		923B1A92C7134D54BB9B4525 /* Resources */ = {
-			isa = "PBXGroup";
+			isa = PBXGroup;
 			children = (
 			);
 			name = Resources;
 			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -737,7 +735,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.circlin;
 				PRODUCT_NAME = circlin;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -759,7 +757,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.circlin;
 				PRODUCT_NAME = circlin;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
