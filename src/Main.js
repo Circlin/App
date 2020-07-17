@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 import RootStack from './navigation/RootStack';
+
 const theme = {
   ...DefaultTheme,
   roundness: 2,
@@ -11,6 +12,7 @@ const theme = {
     accent: '#ff5733',
   },
 };
+
 class Main extends Component {
   render() {
     return (

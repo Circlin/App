@@ -146,6 +146,7 @@ class LoginScreen extends Component {
       .then((result) => {
         if (result.resPonseCode == 200) {
           storeData('token', result.token);
+          console.log(result.token);
           storeData('uid', result.uid);
           if (result.type == 'login') {
             //go to home
@@ -157,7 +158,6 @@ class LoginScreen extends Component {
       .catch((error) => console.log(error));
   };
   render() {
-    console.log(this.state);
     return (
       <>
         <StatusBar barStyle="light-content" />
