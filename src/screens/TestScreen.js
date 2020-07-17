@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
-import { View, Text } from 'react-native';
-
+import {Button} from 'react-native-paper';
+import {View, Text, SafeAreaView} from 'react-native';
 
 class TestScreen extends Component {
   render() {
     return (
-        <View><Text>테스트</Text></View>
+      <SafeAreaView>
+        <Button
+          onPress={() => {
+            this.props.navigation.navigate('로그인');
+          }}>
+          뒤로
+        </Button>
+      </SafeAreaView>
     );
   }
 }

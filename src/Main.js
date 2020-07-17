@@ -18,7 +18,7 @@ class Main extends Component {
     return (
       <PaperProvider theme={theme}>
         <NavigationContainer>
-          <RootStack />
+          <RootStack route={this.props.route} />
         </NavigationContainer>
       </PaperProvider>
     );

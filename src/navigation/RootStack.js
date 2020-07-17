@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import LoginScreen from '../screens/LoginScreen'
+import LoginScreen from '../screens/LoginScreen';
 import TestScreen from '../screens/TestScreen';
 import EmailLoginScreen from '../screens/EmailLoginScreen';
 
@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 class RootStack extends Component {
   render() {
     return (
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName={this.props.route}>
         <Stack.Screen
           name="로그인"
           component={LoginScreen}
