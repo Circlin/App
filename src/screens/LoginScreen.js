@@ -6,13 +6,16 @@ import styled from 'styled-components/native';
 import LoginBg from '../components/LoginBg';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import KakaoLogins from '@react-native-seoul/kakao-login';
-import {
-  LoginManager,
-  GraphRequest,
-  AccessToken,
-  GraphRequestManager,
-} from 'react-native-fbsdk';
+import {LoginManager, AccessToken} from 'react-native-fbsdk';
 import AsyncStorage from '@react-native-community/async-storage';
+const API_URL = 'https://www.circlin.co.kr/circlinApi/v3/';
+const storeData = async (key, value) => {
+  try {
+    await AsyncStorage.setItem(key, value);
+  } catch (e) {
+    // saving error
+  }
+};
 const Wrapper = styled.View`
   position: absolute;
   top: 0;
@@ -66,6 +69,7 @@ const IconName = styled.Text`
 
 class LoginScreen extends Component {
   state = {
+    animate: false,
     userId: '',
     accessToken: '',
     refreshToken: '',
@@ -88,8 +92,9 @@ class LoginScreen extends Component {
         KakaoLogins.getProfile()
           .then((result) => {
             this.setState({
-              userId: result.id + '@k',
+              userId: result.id + '@K',
             });
+            this._loginToServer();
           })
           .catch((err) => {
             console.log(err);
@@ -105,21 +110,52 @@ class LoginScreen extends Component {
         if (!result.isCancelled) {
           AccessToken.getCurrentAccessToken().then((data) => {
             this.setState({
-              userId: data.userID + '@f',
+              userId: data.userID + '@F',
               accessToken: data.accessToken,
               refreshToken: '',
               accessTokenExpireTime: data.expirationTime,
               refreshTokenExpireTime: 0,
             });
+            this._loginToServer();
           });
-          this.getPublicFacebookProfile();
         }
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
+  _loginToServer = async () => {
+    this.setState({
+      animate: true,
+    });
+    fetch(API_URL + 'login/sns', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId: this.state.userId,
+        access_token: this.state.accessToken,
+        refresh_token: this.state.refreshToken,
+        access_expire: this.state.accessTokenExpireTime,
+        refresh_expire: this.state.refreshTokenExpireTime,
+      }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.resPonseCode == 200) {
+          storeData('token', result.token);
+          storeData('uid', result.uid);
+          if (result.type == 'login') {
+            //go to home
+          } else {
+            //go to signup next
+          }
+        }
+      })
+      .catch((error) => console.log(error));
+  };
   render() {
     console.log(this.state);
     return (

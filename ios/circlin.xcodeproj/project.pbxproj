@@ -44,7 +44,7 @@
 		00E356EE1AD99517003FC87E /* circlinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = circlinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* circlinTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = circlinTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* circlin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = circlin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* 써클인.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "써클인.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = circlin/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = circlin/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = circlin/Images.xcassets; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* circlin.app */,
+				13B07F961A680F5B00A75B9A /* 써클인.app */,
 				00E356EE1AD99517003FC87E /* circlinTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* circlin-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* circlin-tvOSTests.xctest */,
@@ -246,7 +246,7 @@
 			);
 			name = circlin;
 			productName = circlin;
-			productReference = 13B07F961A680F5B00A75B9A /* circlin.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* 써클인.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* circlin-tvOS */ = {
@@ -301,7 +301,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 7TYHB2K2ZU;
+						DevelopmentTeam = 4MSR7FE2Z3;
 						LastSwiftMigration = 1120;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -732,7 +732,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7TYHB2K2ZU;
+				DEVELOPMENT_TEAM = 4MSR7FE2Z3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = circlin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -742,7 +742,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.circlin;
-				PRODUCT_NAME = circlin;
+				PRODUCT_NAME = "써클인";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -756,7 +756,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7TYHB2K2ZU;
+				DEVELOPMENT_TEAM = 4MSR7FE2Z3;
 				INFOPLIST_FILE = circlin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -765,7 +765,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.circlin;
-				PRODUCT_NAME = circlin;
+				PRODUCT_NAME = "써클인";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
