@@ -146,10 +146,11 @@ class LoginScreen extends Component {
       .then((result) => {
         if (result.resPonseCode == 200) {
           storeData('token', result.token);
-          console.log(result.token);
+
           storeData('uid', result.uid);
           if (result.type == 'login') {
             //go to home
+            this.props.navigation.navigate('바텀탭');
           } else {
             //go to signup next
           }

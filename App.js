@@ -9,44 +9,49 @@ const API_URL = 'https://www.circlin.co.kr/circlinApi/v3/';
 export default class App extends Component {
   state = {
     route: '',
+    token: '',
+    uid: '',
   };
   componentDidMount() {
     this.getData('token');
   }
-
-  // getUserData = async (token) => {
-  //   await fetch(API_URL + 'sessiontoken', {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       token: token,
-  //     }),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((result) => {
-  //       console.log(result);
-  //       if (result.resPonseCode == 200) {
-  //         this.setState({
-  //           route: '바텀탭',
-  //         });
-  //       }
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
+  getUserData = async (token) => {
+    await fetch(API_URL + 'sessiontoken', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        token: token,
+      }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        if (result.resPonseCode == 200) {
+          this.setState({
+            route: '바텀탭',
+          });
+          SplashScreen.hide();
+        }
+      })
+      .catch((error) => console.log(error));
+  };
   getData = async (key) => {
     try {
       const value = await AsyncStorage.getItem(key);
       if (value !== null) {
         this.setState({
           route: '바텀탭',
+          token: value,
         });
-        SplashScreen.hide();
+        this.getUserData(value);
       } else {
         this.setState({
           route: '로그인',
+          value: '',
+          uid: '',
         });
         SplashScreen.hide();
       }
