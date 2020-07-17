@@ -6,6 +6,13 @@ import styled from 'styled-components/native';
 import LoginBg from '../components/LoginBg';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import KakaoLogins from '@react-native-seoul/kakao-login';
+import {
+  LoginManager,
+  GraphRequest,
+  AccessToken,
+  GraphRequestManager,
+} from 'react-native-fbsdk';
+import AsyncStorage from '@react-native-community/async-storage';
 const Wrapper = styled.View`
   position: absolute;
   top: 0;
@@ -58,18 +65,31 @@ const IconName = styled.Text`
 `;
 
 class LoginScreen extends Component {
+  state = {
+    userId: '',
+    accessToken: '',
+    refreshToken: '',
+    accessTokenExpireTime: 0,
+    refreshTokenExpireTime: 0,
+  };
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    console.log(KakaoLogins);
-  }
+  componentDidMount() {}
   kakaoLogin = () => {
     KakaoLogins.login()
-      .then((result) => {
+      .then((tokenData) => {
+        this.setState({
+          accessToken: tokenData.accessToken,
+          refreshToken: tokenData.refreshToken,
+          accessTokenExpireTime: tokenData.accessTokenExpiresAt,
+          refreshTokenExpireTime: tokenData.refreshTokenExpiresAt,
+        });
         KakaoLogins.getProfile()
           .then((result) => {
-            console.log(result);
+            this.setState({
+              userId: result.id + '@k',
+            });
           })
           .catch((err) => {
             console.log(err);
@@ -79,7 +99,29 @@ class LoginScreen extends Component {
         console.log(err);
       });
   };
+  facebookLogin = async () => {
+    await LoginManager.logInWithPermissions(['public_profile'])
+      .then((result) => {
+        if (!result.isCancelled) {
+          AccessToken.getCurrentAccessToken().then((data) => {
+            this.setState({
+              userId: data.userID + '@f',
+              accessToken: data.accessToken,
+              refreshToken: '',
+              accessTokenExpireTime: data.expirationTime,
+              refreshTokenExpireTime: 0,
+            });
+          });
+          this.getPublicFacebookProfile();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
+    console.log(this.state);
     return (
       <>
         <StatusBar barStyle="light-content" />
@@ -136,8 +178,13 @@ class LoginScreen extends Component {
                     </TouchableOpacity>
                   </ModalSocial>
                   <ModalSocial>
-                    <Icon source={require('../assets/facebook.png')} />
-                    <IconName>페이스북</IconName>
+                    <TouchableOpacity
+                      onPress={() => {
+                        this.facebookLogin();
+                      }}>
+                      <Icon source={require('../assets/facebook.png')} />
+                      <IconName>페이스북</IconName>
+                    </TouchableOpacity>
                   </ModalSocial>
                 </ModalSocialContainer>
               </ModalContentContainer>

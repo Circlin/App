@@ -20,15 +20,6 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>kakao6f44b0e7805839cf17b93b56b89396d6</string>
-		<string>kakaokompassauth</string>
-		<string>storykompassauth</string>
-		<string>kakaolink</string>
-		<string>kakaotalk-5.9.7</string>
-		<string>storylink</string>
-	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -39,11 +30,37 @@
 				<string>kakao6f44b0e7805839cf17b93b56b89396d6</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb691673194896893</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+  <key>FacebookDisplayName</key>
+  <string>circlin</string>
+  <key>FacebookAppID</key>
+  <string>691673194896893</string>
 	<key>KAKAO_APP_KEY</key>
 	<string>6f44b0e7805839cf17b93b56b89396d6</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>kakao6f44b0e7805839cf17b93b56b89396d6</string>
+		<string>kakaokompassauth</string>
+		<string>storykompassauth</string>
+		<string>kakaolink</string>
+		<string>kakaotalk-5.9.7</string>
+		<string>storylink</string>
+    <string>fbapi</string>
+    <string>fb-messenger-api</string>
+    <string>fbauth2</string>
+    <string>fbshareextension</string>
+	</array>
+ 
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
