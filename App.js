@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Main from './src/Main';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -16,7 +16,6 @@ const getUserData = async (token) => {
   })
     .then((response) => response.json())
     .then((result) => {
-      console.log(result);
       if (result.resPonseCode == 200) {
         console.log(result);
       }
@@ -34,7 +33,10 @@ const getData = async (key) => {
   }
 };
 export default function App() {
-  getData('token');
+  useEffect(() => {
+    getData('token');
+  }, []);
+
   return (
     <SafeAreaProvider>
       <Main />
