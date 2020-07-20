@@ -20,6 +20,8 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>NSContactsUsageDescription</key>
+	<string>친구 추천을 위한 연락처 수집</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

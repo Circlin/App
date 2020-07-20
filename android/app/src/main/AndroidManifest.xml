@@ -2,7 +2,7 @@
   package="sky.kr.co.circlina">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
