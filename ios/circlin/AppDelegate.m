@@ -14,6 +14,7 @@
 #import <KakaoOpenSDK/KakaoOpenSDK.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "RNSplashScreen.h"
+#import <Firebase.h>
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
   SKDescriptorMapper *layoutDescriptorMapper = [[SKDescriptorMapper alloc] initWithDefaults];
@@ -45,7 +46,9 @@ static void InitializeFlipper(UIApplication *application) {
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  [FIRApp configure];
   [RNSplashScreen show];
+  
   return YES;
 }
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url

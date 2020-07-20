@@ -8,14 +8,10 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import KakaoLogins from '@react-native-seoul/kakao-login';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
 import AsyncStorage from '@react-native-community/async-storage';
+import {storeData} from '../../src/common';
+
 const API_URL = 'https://www.circlin.co.kr/circlinApi/v3/';
-const storeData = async (key, value) => {
-  try {
-    await AsyncStorage.setItem(key, value);
-  } catch (e) {
-    // saving error
-  }
-};
+
 const Wrapper = styled.View`
   position: absolute;
   top: 0;
@@ -65,6 +61,7 @@ const IconName = styled.Text`
   font-size: 12px;
   font-weight: bold;
   margin-top: 12px;
+  text-align: center;
 `;
 
 class LoginScreen extends Component {
@@ -91,6 +88,7 @@ class LoginScreen extends Component {
         });
         KakaoLogins.getProfile()
           .then((result) => {
+            console.log(result);
             this.setState({
               userId: result.id + '@K',
             });
@@ -161,9 +159,37 @@ class LoginScreen extends Component {
   render() {
     return (
       <>
-        <StatusBar barStyle="light-content" />
+        <StatusBar
+          translucent
+          backgroundColor="rgba(0,0,0,0)"
+          barStyle={'dark-content'}
+        />
         <LoginBg />
         <Wrapper>
+          <Button
+            mode="contained"
+            mode="dark"
+            onPress={() => this.props.navigation.navigate('추가정보입력첫번째')}
+            style={{
+              borderRadius: 4,
+              backgroundColor: '#ffffff',
+              marginBottom: 15,
+            }}
+            contentStyle={{height: 50}}>
+            추가정보 입력
+          </Button>
+          <Button
+            mode="contained"
+            mode="dark"
+            onPress={() => this.props.navigation.navigate('휴대폰본인인증')}
+            style={{
+              borderRadius: 4,
+              backgroundColor: '#ffffff',
+              marginBottom: 15,
+            }}
+            contentStyle={{height: 50}}>
+            본인인증
+          </Button>
           <Button
             mode="contained"
             mode="dark"

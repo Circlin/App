@@ -1,16 +1,44 @@
 import React, {Component} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
+import {
+  configureFonts,
+  DefaultTheme,
+  Provider as PaperProvider,
+} from 'react-native-paper';
 import RootStack from './navigation/RootStack';
+
+const fontConfig = {
+  default: {
+    regular: {
+      fontFamily: 'sans-serif',
+      fontWeight: 'normal',
+    },
+    medium: {
+      fontFamily: 'sans-serif-medium',
+      fontWeight: 'normal',
+    },
+    light: {
+      fontFamily: 'sans-serif-light',
+      fontWeight: 'normal',
+    },
+    thin: {
+      fontFamily: 'sans-serif-thin',
+      fontWeight: 'normal',
+    },
+  },
+};
 
 const theme = {
   ...DefaultTheme,
-  roundness: 2,
+  roundness: 4,
   colors: {
     ...DefaultTheme.colors,
-    primary: '#000000',
+    primary: '#262828',
     accent: '#ff5733',
+    background: '#ffffff',
+    text: '#262828',
   },
+  fonts: configureFonts(fontConfig),
 };
 
 class Main extends Component {

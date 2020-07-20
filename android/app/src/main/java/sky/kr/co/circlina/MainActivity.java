@@ -1,4 +1,4 @@
-package com.circlin;
+package sky.kr.co.circlina;
 
 import android.os.Bundle;
 import org.devio.rn.splashscreen.SplashScreen;

@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -27,7 +27,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>kakao6f44b0e7805839cf17b93b56b89396d6</string>
+				<string>kakao7fbdb98ed820fa18ed39b0e905d2aa5c</string>
 			</array>
 		</dict>
 		<dict>
@@ -38,6 +38,14 @@
 				<string>fb691673194896893</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.191668201732-qes720pqajfa0ibtgb55ta9v55knnlgt</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
@@ -46,10 +54,10 @@
 	<key>FacebookDisplayName</key>
 	<string>circlin</string>
 	<key>KAKAO_APP_KEY</key>
-	<string>6f44b0e7805839cf17b93b56b89396d6</string>
+	<string>7fbdb98ed820fa18ed39b0e905d2aa5c</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>kakao6f44b0e7805839cf17b93b56b89396d6</string>
+		<string>kakao7fbdb98ed820fa18ed39b0e905d2aa5c</string>
 		<string>kakaokompassauth</string>
 		<string>storykompassauth</string>
 		<string>kakaolink</string>

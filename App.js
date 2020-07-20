@@ -3,7 +3,6 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Main from './src/Main';
 import AsyncStorage from '@react-native-community/async-storage';
 import SplashScreen from 'react-native-splash-screen';
-import {useNavigation} from '@react-navigation/native';
 const API_URL = 'https://www.circlin.co.kr/circlinApi/v3/';
 
 export default class App extends Component {

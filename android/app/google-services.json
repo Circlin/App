@@ -52,18 +52,18 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:191668201732:android:d6369c81b6a7d601d6c851",
+        "mobilesdk_app_id": "1:191668201732:android:22bc3f5da04b92d9d6c851",
         "android_client_info": {
           "package_name": "sky.kr.co.circlina"
         }
       },
       "oauth_client": [
         {
-          "client_id": "191668201732-4a931nohbh24gd5jdgnpek48de0g8pos.apps.googleusercontent.com",
+          "client_id": "191668201732-4dlm8svstd4t2hf727dpujm9g3bveg75.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "sky.kr.co.circlina",
-            "certificate_hash": "ae745053d8f460f3a30730238d6dacefaab40922"
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },
         {

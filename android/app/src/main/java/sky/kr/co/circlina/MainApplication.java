@@ -1,7 +1,9 @@
-package com.circlin;
+package sky.kr.co.circlina;
 
 import android.app.Application;
 import android.content.Context;
+
+import sky.kr.co.circlina.BuildConfig;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.oblador.vectoricons.VectorIconsPackage;
