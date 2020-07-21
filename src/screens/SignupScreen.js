@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TextInput, HelperText, Button, Title} from 'react-native-paper';
+import {TextInput, HelperText, Button} from 'react-native-paper';
 import styled from 'styled-components/native';
 import BackHeader from '../components/BackHeader';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -8,25 +8,31 @@ import {storeData} from '../../src/common';
 const API_URL = 'https://www.circlin.co.kr/circlinApi/v3/';
 
 const Bold = styled.Text``;
-
 const B = (props) => <Bold style={{fontWeight: 'bold'}}>{props.children}</Bold>;
 
-const Page = styled.View`
-  flex: 1;
-  background-color: #ffffff;
-`;
-
 const Container = styled.View`
+  flex: 1;
   padding: 0 24px;
 `;
 
 const TitleContainer = styled.View`
   padding: 16px 0;
+  margin-bottom: 24px;
+`;
+
+const Title = styled.Text`
+  font-size: 24px;
+  font-weight: bold;
 `;
 
 const SubTitle = styled.Text`
   font-size: 14px;
   margin-top: 8px;
+`;
+
+const InputContainer = styled.View`
+  width: 100%;
+  flex-direction: row;
 `;
 
 const BottomText = styled.Text`
@@ -118,72 +124,79 @@ class EmailLoginScreen extends Component {
   };
   render() {
     return (
-      <Page>
-        <SafeAreaView>
-          <BackHeader navigation={this.props.navigation} />
-          <Container>
-            <TitleContainer>
-              <Title>써클인 회원가입</Title>
-              <SubTitle>
-                간편하게 써클인에 회원가입하고{'\n'}건강한 바깥생활을
-                즐겨보세요!
-              </SubTitle>
-            </TitleContainer>
-            <TextInput
-              label="이메일"
-              style={{backgroundColor: '#ffffff', paddingHorizontal: 0}}
-              autoCapitalize="none"
-              value={this.state.email}
-              onChangeText={(text) => {
-                this.setState({email: text});
-                this.checkEmail(text);
-              }}
-            />
-            <HelperText
-              type="error"
-              visible={this.state.emailCheck}
-              padding="none">
-              {this.state.emailWarnMessage}
-            </HelperText>
-            <TextInput
-              label="비밀번호"
-              style={{backgroundColor: '#ffffff', paddingHorizontal: 0}}
-              secureTextEntry={true}
-              value={this.state.password}
-              onChangeText={(text) => {
-                this.setState({password: text});
-                this.checkPassword(text);
-              }}
-            />
-            <HelperText
-              type="error"
-              visible={this.state.passwordCheck}
-              padding="none">
-              패스워드는 영+숫자 포함 6~12자리로 입력주세요
-            </HelperText>
-            <Button
-              mode="contained"
-              onPress={() => {
-                this.signUpUser();
-              }}
-              disabled={
-                !this.state.emailCheck &&
-                !this.state.passwordCheck &&
-                this.state.email &&
-                this.state.password
-                  ? false
-                  : true
-              }
-              style={{marginTop: 16}}
-              contentStyle={{height: 50}}>
-              회원가입
-            </Button>
-            <BottomText>
-              회원가입을 클릭하면 써클인의 <B>이용약관</B>에 동의하는 것입니다.
-            </BottomText>
-          </Container>
-        </SafeAreaView>
-      </Page>
+      <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+        <BackHeader navigation={this.props.navigation} />
+        <Container>
+          <TitleContainer>
+            <Title>써클인 회원가입</Title>
+            <SubTitle>
+              간편하게 써클인에 회원가입하고{'\n'}건강한 바깥생활을 즐겨보세요!
+            </SubTitle>
+          </TitleContainer>
+          <TextInput
+            label="이메일"
+            style={{
+              backgroundColor: '#ffffff',
+              paddingHorizontal: 0,
+              height: 56,
+            }}
+            dense={true}
+            autoCapitalize="none"
+            value={this.state.email}
+            onChangeText={(text) => {
+              this.setState({email: text});
+              this.checkEmail(text);
+            }}
+          />
+          <HelperText
+            type="error"
+            visible={this.state.emailCheck}
+            padding="none">
+            {this.state.emailWarnMessage}
+          </HelperText>
+          <TextInput
+            label="비밀번호"
+            style={{
+              backgroundColor: '#ffffff',
+              paddingHorizontal: 0,
+              height: 56,
+            }}
+            dense={true}
+            secureTextEntry={true}
+            value={this.state.password}
+            onChangeText={(text) => {
+              this.setState({password: text});
+              this.checkPassword(text);
+            }}
+          />
+          <HelperText
+            type="error"
+            visible={this.state.passwordCheck}
+            padding="none">
+            패스워드는 영+숫자 포함 6~12자리로 입력주세요
+          </HelperText>
+          <Button
+            mode="contained"
+            onPress={() => {
+              this.signUpUser();
+            }}
+            disabled={
+              !this.state.emailCheck &&
+              !this.state.passwordCheck &&
+              this.state.email &&
+              this.state.password
+                ? false
+                : true
+            }
+            style={{marginTop: 16}}
+            contentStyle={{height: 50}}>
+            회원가입
+          </Button>
+          <BottomText>
+            회원가입을 클릭하면 써클인의 <B>이용약관</B>에 동의하는 것입니다.
+          </BottomText>
+        </Container>
+      </SafeAreaView>
     );
   }
 }

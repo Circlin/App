@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, ActivityIndicator, View, Text} from 'react-native';
-import {TextInput, HelperText, Button, Title} from 'react-native-paper';
+import {TextInput, HelperText, Button} from 'react-native-paper';
 import styled from 'styled-components/native';
 import BackHeader from '../components/BackHeader';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -8,24 +8,38 @@ import {getData} from '../../src/common';
 
 const API_URL = 'https://www.circlin.co.kr/circlinApi/v3/';
 
-const Page = styled.View`
-  flex: 1;
-  background-color: #ffffff;
-`;
+const Bold = styled.Text``;
+const B = (props) => <Bold style={{fontWeight: 'bold'}}>{props.children}</Bold>;
 
 const Container = styled.View`
+  flex: 1;
   padding: 0 24px;
 `;
 
 const TitleContainer = styled.View`
   padding: 16px 0;
+  margin-bottom: 24px;
+`;
+
+const Title = styled.Text`
+  font-size: 24px;
+  font-weight: bold;
+`;
+
+const SubTitle = styled.Text`
+  font-size: 14px;
+  margin-top: 8px;
 `;
 
 const PhoneContainer = styled.View`
   width: 100%;
   flex-direction: row;
   margin-top: 16px;
-  margin-bottom: 8px;
+`;
+
+const CertificationContainer = styled.View`
+  width: 100%;
+  margin-top: 16px;
 `;
 
 class PhoneAuthScreen extends Component {
@@ -173,82 +187,83 @@ class PhoneAuthScreen extends Component {
   render() {
     const {started, error, codeInput, sent, auto, user} = this.state;
     return (
-      <Page>
-        <SafeAreaView>
-          <BackHeader navigation={this.props.navigation} />
-          <Container>
-            <TitleContainer>
-              <Title>본인인증</Title>
-            </TitleContainer>
-            <PhoneContainer>
+      <SafeAreaView style={{flex: 1, backgroundColor: '#ffffff'}}>
+        <BackHeader navigation={this.props.navigation} />
+        <Container>
+          <TitleContainer>
+            <Title>본인인증</Title>
+          </TitleContainer>
+          <PhoneContainer>
+            <TextInput
+              label=""
+              style={{
+                backgroundColor: '#ffffff',
+                paddingHorizontal: 0,
+                height: 48,
+                flex: 1,
+                marginRight: 16,
+              }}
+              placeholder="'-'를 제외하고 입력"
+              autoCapitalize="none"
+              keyboardType="phone-pad"
+              value={this.state.phoneNumber}
+              onChangeText={(text) => {
+                this.checkPhoneNumber(text);
+              }}
+              textContentType="oneTimeCode"
+            />
+            <Button
+              mode="contained"
+              contentStyle={{height: 48}}
+              disabled={this.state.phoneNumberOriginal != '' ? false : true}
+              onPress={() => {
+                this.handleSendCode();
+              }}>
+              인증 요청
+            </Button>
+          </PhoneContainer>
+          <HelperText type="error" padding="none" visible={false} />
+          {this.state.sent ? (
+            <Text style={{fontSize: 10}}>
+              {this.state.autoVerifyCountDown > 0
+                ? `인증번호가 발송되었습니다. 제한시간 안에 인증번호를 입력해주세요(${parseInt(
+                    (this.state.autoVerifyCountDown % 3600) / 60,
+                  )}분 ${this.state.autoVerifyCountDown % 60}초)`
+                : '요청시간이 만료되었습니다 다시 인증번호를 요청하세요'}
+            </Text>
+          ) : null}
+          {!user && started && sent ? (
+            <CertificationContainer>
               <TextInput
                 label=""
-                style={{
-                  backgroundColor: '#ffffff',
-                  paddingHorizontal: 0,
-                  height: 48,
-                  flex: 1,
-                  marginRight: 16,
-                }}
-                placeholder="'-'를 제외하고 입력"
+                autoFocus
+                style={{backgroundColor: '#ffffff', paddingHorizontal: 0}}
                 autoCapitalize="none"
-                keyboardType="phone-pad"
-                value={this.state.phoneNumber}
+                placeholder="인증번호 입력"
+                value={codeInput}
                 onChangeText={(text) => {
-                  this.checkPhoneNumber(text);
+                  this.setState({codeInput: text});
                 }}
                 textContentType="oneTimeCode"
+                keyboardType="phone-pad"
               />
+              <HelperText type="error" padding="none">
+                인증번호가 올바르지 않습니다.
+              </HelperText>
               <Button
                 mode="contained"
-                contentStyle={{height: 48}}
-                disabled={this.state.phoneNumberOriginal != '' ? false : true}
                 onPress={() => {
-                  this.handleSendCode();
-                }}>
-                인증 요청
+                  this.afterVerify();
+                }}
+                disabled={this.state.codeInput ? false : true}
+                style={{marginTop: 16}}
+                contentStyle={{height: 50}}>
+                확인
               </Button>
-            </PhoneContainer>
-            {this.state.sent ? (
-              <Text style={{fontSize: 10}}>
-                {this.state.autoVerifyCountDown > 0
-                  ? `인증번호가 발송되었습니다. 제한시간 안에 인증번호를 입력해주세요(${parseInt(
-                      (this.state.autoVerifyCountDown % 3600) / 60,
-                    )}분 ${this.state.autoVerifyCountDown % 60}초)`
-                  : '요청시간이 만료되었습니다 다시 인증번호를 요청하세요'}
-              </Text>
-            ) : null}
-            {!user && started && sent ? (
-              <>
-                <TextInput
-                  label=""
-                  autoFocus
-                  style={{backgroundColor: '#ffffff', paddingHorizontal: 0}}
-                  autoCapitalize="none"
-                  placeholder="인증번호 입력"
-                  value={codeInput}
-                  onChangeText={(text) => {
-                    this.setState({codeInput: text});
-                  }}
-                  textContentType="oneTimeCode"
-                  keyboardType="phone-pad"
-                />
-
-                <Button
-                  mode="contained"
-                  onPress={() => {
-                    this.afterVerify();
-                  }}
-                  disabled={this.state.codeInput ? false : true}
-                  style={{marginTop: 16}}
-                  contentStyle={{height: 50}}>
-                  확인
-                </Button>
-              </>
-            ) : null}
-          </Container>
-        </SafeAreaView>
-      </Page>
+            </CertificationContainer>
+          ) : null}
+        </Container>
+      </SafeAreaView>
     );
   }
 }

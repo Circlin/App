@@ -6,7 +6,12 @@ import EmailLoginScreen from '../screens/EmailLoginScreen';
 import FindPasswordScreen from '../screens/FindPasswordScreen';
 import SignupScreen from '../screens/SignupScreen';
 import PhoneAuthScreen from '../screens/PhoneAuthScreen';
-import AddAuthFirstScreen from '../screens/AddAuthFirstScreen';
+import AddAuthFirstScreen from '../screens/auth/AddAuthFirstScreen';
+import AddAuthSecondScreen from '../screens/auth/AddAuthSecondScreen';
+import AddAuthThirdScreen from '../screens/auth/AddAuthThirdScreen';
+import AddAuthFourthScreen from '../screens/auth/AddAuthFourthScreen';
+import AddAuthFifthScreen from '../screens/auth/AddAuthFifthScreen';
+import AddAuthSixthScreen from '../screens/auth/AddAuthSixthScreen';
 
 const Stack = createStackNavigator();
 
@@ -46,7 +51,27 @@ class RootStack extends Component {
         />
         <Stack.Screen
           name="추가정보입력두번째"
-          component={AddAuthFirstScreen}
+          component={AddAuthSecondScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="추가정보입력세번째"
+          component={AddAuthThirdScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="추가정보입력네번째"
+          component={AddAuthFourthScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="추가정보입력다섯번째"
+          component={AddAuthFifthScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="추가정보입력여섯번째"
+          component={AddAuthSixthScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen

@@ -30,7 +30,6 @@ const fontConfig = {
 
 const theme = {
   ...DefaultTheme,
-  roundness: 4,
   colors: {
     ...DefaultTheme.colors,
     primary: '#262828',
@@ -38,7 +37,6 @@ const theme = {
     background: '#ffffff',
     text: '#262828',
   },
-  fonts: configureFonts(fontConfig),
 };
 
 class Main extends Component {

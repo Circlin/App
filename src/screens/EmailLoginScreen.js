@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TextInput, HelperText, Button, Title} from 'react-native-paper';
+import {TextInput, HelperText, Button} from 'react-native-paper';
 import styled from 'styled-components/native';
 import BackHeader from '../components/BackHeader';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -8,22 +8,32 @@ import {storeData} from '../../src/common';
 
 const API_URL = 'https://www.circlin.co.kr/circlinApi/v3/';
 
-const Page = styled.View`
-  flex: 1;
-  background-color: #ffffff;
-`;
+const Bold = styled.Text``;
+const B = (props) => <Bold style={{fontWeight: 'bold'}}>{props.children}</Bold>;
 
 const Container = styled.View`
+  flex: 1;
   padding: 0 24px;
 `;
 
 const TitleContainer = styled.View`
   padding: 16px 0;
+  margin-bottom: 24px;
+`;
+
+const Title = styled.Text`
+  font-size: 24px;
+  font-weight: bold;
 `;
 
 const SubTitle = styled.Text`
   font-size: 14px;
   margin-top: 8px;
+`;
+
+const InputContainer = styled.View`
+  width: 100%;
+  flex-direction: row;
 `;
 
 const TextButtonContainer = styled.View`
@@ -88,103 +98,103 @@ class EmailLoginScreen extends Component {
   };
   render() {
     return (
-      <Page>
-        <SafeAreaView>
-          <BackHeader navigation={this.props.navigation} />
-          <Container>
-            <TitleContainer>
-              <Title>써클인 로그인</Title>
-            </TitleContainer>
-            <TextInput
-              label="이메일"
-              style={{
-                backgroundColor: '#ffffff',
-                paddingHorizontal: 0,
-                height: 64,
-              }}
-              autoCapitalize="none"
-              value={this.state.email}
-              onChangeText={(text) => {
-                this.setState({email: text});
-                this.checkEmail(text);
-              }}
-            />
-            <HelperText
-              type="error"
-              visible={this.state.emailCheck}
-              padding="none">
-              이메일 형식으로 입력해주세요
-            </HelperText>
-            <TextInput
-              label="비밀번호"
-              style={{
-                backgroundColor: '#ffffff',
-                paddingHorizontal: 0,
-                height: 64,
-              }}
-              secureTextEntry={true}
-              value={this.state.password}
-              onChangeText={(text) => {
-                this.setState({password: text});
-                this.checkPassword(text);
-              }}
-            />
-            <HelperText
-              type="error"
-              visible={this.state.passwordCheck}
-              padding="none">
-              패스워드는 영+숫자 포함 6~12자리로 입력주세요
-            </HelperText>
+      <SafeAreaView style={{flex: 1, backgroundColor: '#ffffff'}}>
+        <BackHeader navigation={this.props.navigation} />
+        <Container>
+          <TitleContainer>
+            <Title>써클인 로그인</Title>
+          </TitleContainer>
+          <TextInput
+            label="이메일"
+            style={{
+              backgroundColor: '#ffffff',
+              paddingHorizontal: 0,
+              height: 56,
+            }}
+            dense={true}
+            autoCapitalize="none"
+            value={this.state.email}
+            onChangeText={(text) => {
+              this.setState({email: text});
+              this.checkEmail(text);
+            }}
+          />
+          <HelperText
+            type="error"
+            visible={this.state.emailCheck}
+            padding="none">
+            이메일 형식으로 입력해주세요
+          </HelperText>
+          <TextInput
+            label="비밀번호"
+            style={{
+              backgroundColor: '#ffffff',
+              paddingHorizontal: 0,
+              height: 56,
+            }}
+            dense={true}
+            secureTextEntry={true}
+            value={this.state.password}
+            onChangeText={(text) => {
+              this.setState({password: text});
+              this.checkPassword(text);
+            }}
+          />
+          <HelperText
+            type="error"
+            visible={this.state.passwordCheck}
+            padding="none">
+            패스워드는 영+숫자 포함 6~12자리로 입력주세요
+          </HelperText>
+          <Button
+            mode="contained"
+            onPress={() => {
+              this.userLogin();
+            }}
+            disabled={
+              !this.state.emailCheck &&
+              !this.state.passwordCheck &&
+              this.state.email &&
+              this.state.password
+                ? false
+                : true
+            }
+            style={{marginTop: 16}}
+            contentStyle={{height: 50}}>
+            로그인
+          </Button>
+          <TextButtonContainer>
             <Button
-              mode="contained"
+              mode="text"
               onPress={() => {
-                this.userLogin();
+                this.props.navigation.navigate('회원가입');
               }}
-              disabled={
-                !this.state.emailCheck &&
-                !this.state.passwordCheck &&
-                this.state.email &&
-                this.state.password
-                  ? false
-                  : true
-              }
-              style={{marginTop: 16}}
-              contentStyle={{height: 50}}>
-              로그인
+              ContentStyle={{paddingHorizontal: 0}}
+              style={{minWidth: 0}}
+              labelStyle={{
+                fontSize: 12,
+                marginHorizontal: 0,
+                marginVertical: 0,
+              }}>
+              회원가입
             </Button>
-            <TextButtonContainer>
-              <Button
-                mode="text"
-                onPress={() => {
-                  this.props.navigation.navigate('회원가입');
-                }}
-                ContentStyle={{paddingHorizontal: 0}}
-                style={{minWidth: 0}}
-                labelStyle={{
-                  fontSize: 12,
-                  marginHorizontal: 0,
-                  marginVertical: 0,
-                }}>
-                회원가입
-              </Button>
-              <Button
-                mode="text"
-                onPress={() => {
-                  this.props.navigation.navigate('비밀번호찾기');
-                }}
-                ContentStyle={{paddingHorizontal: 0}}
-                style={{minWidth: 0}}
-                labelStyle={{
-                  fontSize: 12,
-                  marginHorizontal: 0,
-                  marginVertical: 0,
-                }}>
-                비밀번호 찾기
-              </Button>
-            </TextButtonContainer>
-          </Container>
-        </SafeAreaView>
-      </Page>
+            <Button
+              mode="text"
+              onPress={() => {
+                this.props.navigation.navigate('비밀번호찾기');
+              }}
+              ContentStyle={{paddingHorizontal: 0}}
+              style={{minWidth: 0}}
+              labelStyle={{
+                fontSize: 12,
+                marginHorizontal: 0,
+                marginVertical: 0,
+              }}>
+              비밀번호 찾기
+            </Button>
+          </TextButtonContainer>
+        </Container>
+      </SafeAreaView>
     );
   }
 }

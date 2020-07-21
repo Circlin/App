@@ -1,28 +1,40 @@
 import React, {Component} from 'react';
-import {TextInput, HelperText, Button, Title} from 'react-native-paper';
+import {TextInput, HelperText, Button} from 'react-native-paper';
 import styled from 'styled-components/native';
 import BackHeader from '../components/BackHeader';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 const API_URL = 'https://www.circlin.co.kr/circlinApi/v3/';
 
-const Page = styled.View`
-  flex: 1;
-  background-color: #ffffff;
-`;
+const Bold = styled.Text``;
+const B = (props) => <Bold style={{fontWeight: 'bold'}}>{props.children}</Bold>;
+
 
 const Container = styled.View`
+  flex: 1;
   padding: 0 24px;
 `;
 
 const TitleContainer = styled.View`
   padding: 16px 0;
+  margin-bottom: 24px;
+`;
+
+const Title = styled.Text`
+  font-size: 24px;
+  font-weight: bold;
 `;
 
 const SubTitle = styled.Text`
   font-size: 14px;
   margin-top: 8px;
 `;
+
+const InputContainer = styled.View`
+  width: 100%;
+  flex-direction: row;
+`;
+
 
 const TextButtonContainer = styled.View`
   margin-top: 8px;
@@ -70,8 +82,7 @@ class EmailLoginScreen extends Component {
   };
   render() {
     return (
-      <Page>
-        <SafeAreaView>
+        <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
           <BackHeader navigation={this.props.navigation} />
           <Container>
             <TitleContainer>
@@ -83,7 +94,8 @@ class EmailLoginScreen extends Component {
             </TitleContainer>
             <TextInput
               label="이메일"
-              style={{backgroundColor: '#ffffff', paddingHorizontal: 0}}
+              style={{backgroundColor: '#ffffff', paddingHorizontal: 0, height: 56,}}
+              dense={true}
               autoCapitalize="none"
               value={this.state.email}
               onChangeText={(text) => {
@@ -111,7 +123,6 @@ class EmailLoginScreen extends Component {
             </Button>
           </Container>
         </SafeAreaView>
-      </Page>
     );
   }
 }

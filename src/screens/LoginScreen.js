@@ -66,6 +66,7 @@ const IconName = styled.Text`
 
 class LoginScreen extends Component {
   state = {
+    uid: '',
     animate: false,
     userId: '',
     accessToken: '',
@@ -148,7 +149,14 @@ class LoginScreen extends Component {
           storeData('uid', result.uid);
           if (result.type == 'login') {
             //go to home
-            this.props.navigation.navigate('바텀탭');
+            this.setState(
+              {
+                uid: result.uid,
+              },
+              () => {
+                this.props.navigation.navigate('바텀탭');
+              },
+            );
           } else {
             //go to signup next
           }
@@ -166,6 +174,22 @@ class LoginScreen extends Component {
         />
         <LoginBg />
         <Wrapper>
+          <Button
+            mode="contained"
+            mode="dark"
+            onPress={() =>
+              this.props.navigation.navigate('추가정보입력다섯번째', {
+                uid: this.state.uid,
+              })
+            }
+            style={{
+              borderRadius: 4,
+              backgroundColor: '#ffffff',
+              marginBottom: 15,
+            }}
+            contentStyle={{height: 50}}>
+            작업중인 스크린
+          </Button>
           <Button
             mode="contained"
             mode="dark"

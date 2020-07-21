@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import SplashScreen from 'react-native-splash-screen';
 import Contacts from 'react-native-contacts';
 import {storeData} from './src/common/index';
+
 const API_URL = 'https://www.circlin.co.kr/circlinApi/v3/';
 
 export default class App extends Component {
@@ -16,6 +17,7 @@ export default class App extends Component {
     contactList: [],
   };
   componentDidMount() {
+    //  this.getContacts();
     if (Platform.OS == 'ios') {
       Contacts.checkPermission((err, result) => {
         if (result == 'undefined') {
@@ -48,6 +50,7 @@ export default class App extends Component {
   //   } else {
   //     await Contacts.getAllWithoutPhotos((err, result) => {
   //       result.map((contact, index) => {
+  //         console.log(contact);
   //         if (contact.givenName && contact.phoneNumbers[0]) {
   //           removeHypen = contact.phoneNumbers[0].number.replaceAll('-', '');
   //           removeGlobalCode = removeHypen.replaceAll('+82', '');
@@ -108,7 +111,7 @@ export default class App extends Component {
     }
   };
   render() {
-    console.log(this.state.contactList);
+    // console.log(this.state.contactList);
     return (
       <SafeAreaProvider>
         <Main route={this.state.route} />
