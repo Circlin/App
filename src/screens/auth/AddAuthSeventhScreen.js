@@ -50,49 +50,6 @@ const SectionTitle = styled.Text`
   margin-bottom: 16px;
 `;
 
-const dummy = [
-  {
-    key: '1',
-    name: '메이트이름1',
-    address: '메이트주소1',
-    tribe: '메이트종족1',
-    photo:
-      'https://cyld2018.speedgabia.com//Image/profile/23310/23310_1595223119.jpg',
-  },
-  {
-    key: '2',
-    name: '메이트이름2',
-    address: '메이트주소2',
-    tribe: '메이트종족2',
-    photo:
-      'https://cyld2018.speedgabia.com//Image/profile/12260/12260_1584708319.jpg',
-  },
-  {
-    key: '3',
-    name: '메이트이름3',
-    address: '메이트주소3',
-    tribe: '메이트종족3',
-    photo:
-      'https://cyld2018.speedgabia.com//Image/profile/22311/22311_1594172624.jpeg',
-  },
-  {
-    key: '4',
-    name: '메이트이름4',
-    address: '메이트주소4',
-    tribe: '메이트종족4',
-    photo:
-      'https://cyld2018.speedgabia.com//Image/profile/18410/18410_1590039043.jpeg',
-  },
-  {
-    key: '5',
-    name: '메이트이름5',
-    address: '메이트주소5',
-    tribe: '메이트종족5',
-    photo:
-      'https://cyld2018.speedgabia.com//Image/profile/15683/15683_1586924258.jpg',
-  },
-];
-
 class AddAuthSeventhScreen extends Component {
   constructor(props) {
     super(props);
@@ -127,7 +84,7 @@ class AddAuthSeventhScreen extends Component {
               buttonPositive: '확인',
             },
           ).then(() => {
-            // this.getContacts();
+            this.getContacts();
           });
         }
       },
