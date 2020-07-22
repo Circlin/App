@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+import BottomTabNav from './BottomTabNav';
 import LoginScreen from '../screens/LoginScreen';
 import TestScreen from '../screens/TestScreen';
 import EmailLoginScreen from '../screens/EmailLoginScreen';
@@ -12,6 +13,10 @@ import AddAuthThirdScreen from '../screens/auth/AddAuthThirdScreen';
 import AddAuthFourthScreen from '../screens/auth/AddAuthFourthScreen';
 import AddAuthFifthScreen from '../screens/auth/AddAuthFifthScreen';
 import AddAuthSixthScreen from '../screens/auth/AddAuthSixthScreen';
+import AddAuthSeventhScreen from '../screens/auth/AddAuthSeventhScreen';
+import AddAuthEighthScreen from '../screens/auth/AddAuthEighthScreen';
+import SearchScreen from '../screens/SearchScreen';
+import NoticeScreen from '../screens/NoticeScreen';
 
 const Stack = createStackNavigator();
 
@@ -75,11 +80,32 @@ class RootStack extends Component {
           options={{headerShown: false}}
         />
         <Stack.Screen
+          name="추가정보입력일곱번째"
+          component={AddAuthSeventhScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="추가정보입력여덟번째"
+          component={AddAuthEighthScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
           name="바텀탭"
-          component={TestScreen}
+          component={BottomTabNav}
           options={{headerShown: false}}
         />
         <Stack.Screen name="상세정보" component={TestScreen} />
+
+        <Stack.Screen
+          name="검색"
+          component={SearchScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="알림"
+          component={NoticeScreen}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     );
   }

@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import {TextInput, HelperText, Button} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import BackHeader from '../../components/BackHeader';
+import BackHeader from '../../components/header/BackHeader';
+
 const API_URL = 'https://www.circlin.co.kr/circlinApi/v3/';
+
 const Bold = styled.Text``;
 const B = (props) => <Bold style={{fontWeight: 'bold'}}>{props.children}</Bold>;
 
@@ -138,15 +140,9 @@ class AddAuthSecondScreen extends Component {
               this.setState({nickName: text});
               this.checkNickName(text);
             }}
-            //value={this.state.email}
-            //onChangeText={(text) => {
-            //this.setState({email: text});
-            //this.checkEmail(text);
-            //}}
           />
           <HelperText
             type="error"
-            //visible={this.state.emailCheck}
             padding="none">
             {this.state.errorMessage}
           </HelperText>
@@ -158,14 +154,6 @@ class AddAuthSecondScreen extends Component {
             onPress={() => {
               this.nextScreen();
             }}
-            //disabled={
-            //!this.state.emailCheck &&
-            //!this.state.passwordCheck &&
-            //this.state.email &&
-            //this.state.password
-            //? false
-            //: true
-            //}
             contentStyle={{height: 52}}>
             다음으로
           </Button>

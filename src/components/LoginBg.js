@@ -8,7 +8,7 @@ class LoginBg extends Component {
   render() {
     return (
       <Video
-        source={require('../assets/ex.mp4')}
+        source={require('../assets/ex01.mp4')}
         style={styles.backgroundVideo}
         muted={true}
         repeat={true}

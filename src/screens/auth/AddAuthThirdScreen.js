@@ -8,12 +8,14 @@ import {
 } from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import BackHeader from '../../components/BackHeader';
+import BackHeader from '../../components/header/BackHeader';
 import Picker from '../../components/picker/Picker';
+
+const API_URL = 'https://www.circlin.co.kr/circlinApi/v3/';
 
 const Bold = styled.Text``;
 const B = (props) => <Bold style={{fontWeight: 'bold'}}>{props.children}</Bold>;
-const API_URL = 'https://www.circlin.co.kr/circlinApi/v3/';
+
 const Container = styled.View`
   flex: 1;
   padding: 0 24px;
@@ -54,9 +56,6 @@ class AddAuthThirdScreen extends Component {
     dongArray: [],
     city: '',
     county: '',
-    cityName: '시/도',
-    countyName: '군/구',
-    dongName: '읍/면/동',
     buttonDisabled: true,
   };
   async componentDidMount() {
@@ -92,8 +91,6 @@ class AddAuthThirdScreen extends Component {
       this.countyArray(key);
       this.setState({
         cityName: item,
-        countyName: '군/구',
-        dongName: '읍/면/동',
         buttonDisabled: true,
       });
     }
@@ -101,7 +98,6 @@ class AddAuthThirdScreen extends Component {
       this.dongArray(key);
       this.setState({
         countyName: item,
-        dongName: '읍/면/동',
         buttonDisabled: true,
       });
     }
@@ -203,6 +199,7 @@ class AddAuthThirdScreen extends Component {
               itemSelect={this.itemSelect.bind(this)}
               dataType={'county'}
               value={this.state.countyName}
+              clickable={this.state.cityName ? 'auto' : 'none'}
             />
             <PickerMargin />
             <Picker
@@ -211,6 +208,7 @@ class AddAuthThirdScreen extends Component {
               itemSelect={this.itemSelect.bind(this)}
               dataType={'dong'}
               value={this.state.dongName}
+              clickable={this.state.countyName ? 'auto' : 'none'}
             />
           </InputContainer>
         </Container>

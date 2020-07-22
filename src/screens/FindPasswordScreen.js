@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {TextInput, HelperText, Button} from 'react-native-paper';
 import styled from 'styled-components/native';
-import BackHeader from '../components/BackHeader';
+import BackHeader from '../components/header/BackHeader';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 const API_URL = 'https://www.circlin.co.kr/circlinApi/v3/';

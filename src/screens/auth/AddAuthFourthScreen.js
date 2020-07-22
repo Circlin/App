@@ -8,11 +8,13 @@ import {
 } from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import BackHeader from '../../components/BackHeader';
+import BackHeader from '../../components/header/BackHeader';
 import CircleIndicator from '../../components/indicator/CircleIndicator';
 import Picker from '../../components/picker/Picker';
 import {birth, month, day} from '../../common/index';
+
 const API_URL = 'https://www.circlin.co.kr/circlinApi/v3/';
+
 const Container = styled.View`
   flex: 1;
   padding: 0 24px;
@@ -42,6 +44,7 @@ const ButtonBottomContainer = styled.View`
 const PickerMargin = styled.View`
   width: 8px;
 `;
+
 class AddAuthFourthScreen extends Component {
   constructor(props) {
     super(props);
@@ -130,7 +133,7 @@ class AddAuthFourthScreen extends Component {
           </TitleContainer>
           <InputContainer>
             <Picker
-              placeholder={'태어난해'}
+              placeholder={'생년'}
               data={this.state.birthArray}
               itemSelect={this.itemSelect.bind(this)}
               dataType={'birth'}
@@ -138,7 +141,7 @@ class AddAuthFourthScreen extends Component {
             />
             <PickerMargin />
             <Picker
-              placeholder={'태어난월'}
+              placeholder={'월'}
               data={this.state.monthArray}
               itemSelect={this.itemSelect.bind(this)}
               dataType={'month'}
@@ -146,7 +149,7 @@ class AddAuthFourthScreen extends Component {
             />
             <PickerMargin />
             <Picker
-              placeholder={'태어난일'}
+              placeholder={'일'}
               data={this.state.dayArray}
               itemSelect={this.itemSelect.bind(this)}
               dataType={'day'}

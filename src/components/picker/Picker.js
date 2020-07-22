@@ -27,6 +27,10 @@ const Placeholder = styled.Text`
   font-size: 16px;
 `;
 
+const InputContent = styled.Text`
+  font-size: 16px;
+`;
+
 const ScrollMargin = styled.View`
   height: 8px;
 `;
@@ -64,11 +68,20 @@ class Picker extends Component {
     const selectValue = this.props.value;
     return (
       <Container>
-        <PickerInput activeOpacity={1} onPress={this.dialogShow}>
-          <Text style={{color: 'rgba(0,0,0,0.54)', fontSize: 16}}>
-            {selectValue}
-          </Text>
-        </PickerInput>
+        <View pointerEvents={this.props.clickable}>
+          <PickerInput
+            activeOpacity={1}
+            onPress={this.dialogShow}
+            style={selectValue ? {borderBottomColor: '#262828'} : false}>
+            <InputContent>
+              {selectValue ? (
+                selectValue
+              ) : (
+                <Placeholder>{this.props.placeholder}</Placeholder>
+              )}
+            </InputContent>
+          </PickerInput>
+        </View>
         <Portal>
           <Dialog
             visible={dialogVisible}

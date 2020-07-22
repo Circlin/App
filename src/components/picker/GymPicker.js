@@ -1,13 +1,8 @@
-import React, {Component, useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  Dimensions,
-} from 'react-native';
-import {Portal, Dialog, Button} from 'react-native-paper';
+import React, {Component} from 'react';
+import {View, StyleSheet, ScrollView, Dimensions} from 'react-native';
+import {Portal, Dialog, Button, Searchbar} from 'react-native-paper';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faSearch} from '@fortawesome/pro-regular-svg-icons';
 import styled from 'styled-components/native';
 import GymList from '../list/GymList';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
@@ -55,10 +50,12 @@ class GymPicker extends Component {
     facil: [],
     lat: 0,
     lng: 0,
+    //검색 위해서 추가된 state
+    firstQuery: '',
   };
-  changeGym(value) {
+  changeGym(value, value2) {
     this.gymDialogHide();
-    this.props.selectFacils(value);
+    this.props.selectFacils(value, value2);
     this.setState({gym: value});
   }
 
@@ -87,9 +84,20 @@ class GymPicker extends Component {
       this.mapDialogShow(),
     );
   };
+  textChange = (text) => {
+    this.setState({firstQuery: text});
+    this.props.searchText(text);
+  };
   render() {
-    const {gym, gymDialogVisible, mapDialogVisible, facil} = this.state;
-
+    //검색 위해서 firstQuery 추가
+    const {
+      gym,
+      gymDialogVisible,
+      mapDialogVisible,
+      facil,
+      firstQuery,
+    } = this.state;
+    console.log(this.props.selectFacils);
     //  console.log(facilsList);
     return (
       <Container>
@@ -101,6 +109,23 @@ class GymPicker extends Component {
             style={[styles.dialog]}
             visible={gymDialogVisible}
             onDismiss={this.gymDialogHide}>
+            {/* S : 검색 위해서 추가된 부분 */}
+            <Dialog.Content style={{backgroundColor: 'transparent'}}>
+              <Searchbar
+                placeholder="시설이름 또는 주소"
+                onChangeText={(query) => {
+                  this.textChange(query);
+                }}
+                value={this.props.selectFacils}
+                onIconPress={() => {
+                  this.props._searchFacils();
+                }}
+              />
+            </Dialog.Content>
+            {/* 여기 props중에서 왼쪽 클릭할때 onIconPress={() => {
+              alert(1)
+            }}*/}
+            {/* E : 검색 위해서 추가된 부분 */}
             <Dialog.ScrollArea style={[styles.dialogScrollArea]}>
               <ScrollView>
                 <ScrollMargin />
@@ -113,7 +138,11 @@ class GymPicker extends Component {
                       LAT={data.Y}
                       LNG={data.X}
                       photo={data.PARTNER_LOGO_DIR}
-                      listOnPress={this.changeGym.bind(this, data.CUSTNAME)}
+                      listOnPress={this.changeGym.bind(
+                        this,
+                        data.CUSTNAME,
+                        data.CUSTCD,
+                      )}
                       buttonOnPress={this.setMap.bind(this, data.Y, data.X)}
                     />
                   );
@@ -148,8 +177,8 @@ class GymPicker extends Component {
                   }}>
                   <Marker
                     coordinate={{
-                      latitude: this.state.lat,
-                      longitude: this.state.lng,
+                      latitude: Number(this.state.lat),
+                      longitude: Number(this.state.lng),
                       latitudeDelta: 0.0922,
                       longitudeDelta: 0.0421,
                     }}

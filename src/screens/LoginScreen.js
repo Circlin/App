@@ -178,9 +178,7 @@ class LoginScreen extends Component {
             mode="contained"
             mode="dark"
             onPress={() =>
-              this.props.navigation.navigate('추가정보입력다섯번째', {
-                uid: this.state.uid,
-              })
+              this.props.navigation.navigate('추가정보입력일곱번째')
             }
             style={{
               borderRadius: 4,
@@ -205,14 +203,14 @@ class LoginScreen extends Component {
           <Button
             mode="contained"
             mode="dark"
-            onPress={() => this.props.navigation.navigate('휴대폰본인인증')}
+            onPress={() => this.props.navigation.navigate('바텀탭')}
             style={{
               borderRadius: 4,
               backgroundColor: '#ffffff',
               marginBottom: 15,
             }}
             contentStyle={{height: 50}}>
-            본인인증
+            메인화면
           </Button>
           <Button
             mode="contained"

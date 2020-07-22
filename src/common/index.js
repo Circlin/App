@@ -37,6 +37,25 @@ export const tribeToCode = (object) =>
     '재활/교정인': '13',
     기타: '14',
   }[object]);
+export const codeToTribe = (object) =>
+  ({
+    0: '다이어터',
+    1: '유지어터',
+    2: '간헐적 다이어터',
+    3: '비건',
+    4: '클린푸드 매니아',
+    5: '보디빌더',
+    6: '파워리프터',
+    7: '러너',
+    8: '요가/필라테스족',
+    9: 'MMA/격투가',
+    10: '종합레저인',
+    11: 'MTB/싸이클러',
+    12: '클라이머',
+    13: '재활/교정인',
+    14: '기타',
+    '': '',
+  }[object]);
 export const birth = () => {
   let birth = new Object();
 

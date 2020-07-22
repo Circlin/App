@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {TextInput, HelperText, Button} from 'react-native-paper';
 import styled from 'styled-components/native';
-import BackHeader from '../components/BackHeader';
+import BackHeader from '../components/header/BackHeader';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-community/async-storage';
 import {storeData} from '../../src/common';
@@ -169,7 +169,6 @@ class EmailLoginScreen extends Component {
               onPress={() => {
                 this.props.navigation.navigate('회원가입');
               }}
-              ContentStyle={{paddingHorizontal: 0}}
               style={{minWidth: 0}}
               labelStyle={{
                 fontSize: 12,
@@ -183,7 +182,6 @@ class EmailLoginScreen extends Component {
               onPress={() => {
                 this.props.navigation.navigate('비밀번호찾기');
               }}
-              ContentStyle={{paddingHorizontal: 0}}
               style={{minWidth: 0}}
               labelStyle={{
                 fontSize: 12,

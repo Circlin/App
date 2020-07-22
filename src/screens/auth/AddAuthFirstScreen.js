@@ -2,10 +2,15 @@ import React, {Component} from 'react';
 import {Button} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import BackHeader from '../../components/BackHeader';
+import BackHeader from '../../components/header/BackHeader';
 import TribeCarousel from '../../components/TribeCarousel';
 import {getData, tribeToCode} from '../../common/index';
+
 const API_URL = 'https://www.circlin.co.kr/circlinApi/v3/';
+
+const Bold = styled.Text``;
+const B = (props) => <Bold style={{fontWeight: 'bold'}}>{props.children}</Bold>;
+
 const Container = styled.View`
   flex: 1;
   padding: 0 24px;
@@ -24,6 +29,11 @@ const Title = styled.Text`
 const SubTitle = styled.Text`
   font-size: 14px;
   margin-top: 8px;
+`;
+
+const InputContainer = styled.View`
+  width: 100%;
+  flex-direction: row;
 `;
 
 const ButtonBottomContainer = styled.View`

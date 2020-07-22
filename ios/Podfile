@@ -14,6 +14,7 @@ target 'circlin' do
   
    pod 'GoogleMaps'
    pod 'Google-Maps-iOS-Utils'
+
   target 'circlinTests' do
     inherit! :complete
     # Pods for testing

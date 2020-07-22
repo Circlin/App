@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Platform, ActivityIndicator, View, Text} from 'react-native';
 import {TextInput, HelperText, Button} from 'react-native-paper';
 import styled from 'styled-components/native';
-import BackHeader from '../components/BackHeader';
+import BackHeader from '../components/header/BackHeader';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {getData} from '../../src/common';
 

@@ -12,7 +12,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faCamera, faPlus} from '@fortawesome/pro-regular-svg-icons';
-import BackHeader from '../../components/BackHeader';
+import BackHeader from '../../components/header/BackHeader';
 import {ActionSheet, Root} from 'native-base';
 import ImagePicker from 'react-native-image-crop-picker';
 const Container = styled.View`
@@ -145,6 +145,7 @@ class AddAuthFifthScreen extends Component {
     })
       .then((response) => response.json())
       .then((result) => {
+        console.log(result);
         if (result.status == 200) {
           this.setState({
             uploadSuccess: true,
