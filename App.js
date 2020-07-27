@@ -82,7 +82,7 @@ export default class App extends Component {
       .then((result) => {
         if (result.resPonseCode == 200) {
           this.setState({
-            route: '바텀탭',
+            route: 'Main',
           });
           SplashScreen.hide();
         }
@@ -94,13 +94,13 @@ export default class App extends Component {
       const value = await AsyncStorage.getItem(key);
       if (value !== null) {
         this.setState({
-          route: '바텀탭',
+          route: 'Main',
           token: value,
         });
         this.getUserData(value);
       } else {
         this.setState({
-          route: '로그인',
+          route: 'Auth',
           value: '',
           uid: '',
         });

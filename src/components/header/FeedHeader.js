@@ -18,15 +18,13 @@ class BackHeader extends Component {
         />
         <Appbar.Content title={''} subtitle={''} />
         <Appbar.Action
-          onPress={() => {
-            this.props.navigation.navigate('알림');
-          }}
+        onPress={() => {this.props.navigation.navigate('알림');}}
           icon={() => (
             <FontAwesomeIcon icon={faBell} size={24} color="#262828" />
           )}
         />
         <Appbar.Action
-          onPress={() => {}}
+          onPress={() => {this.props.headerFilterOnPress}}
           icon={() => (
             <FontAwesomeIcon icon={faSlidersH} size={24} color="#262828" />
           )}

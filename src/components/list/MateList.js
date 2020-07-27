@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faUser} from '@fortawesome/pro-regular-svg-icons';
 const API_URL = 'https://www.circlin.co.kr/circlinApi/v3/';
+import FastImage from 'react-native-fast-image';
 const DescriptionContainer = styled.View`
   flex-direction: row;
 `;
@@ -52,7 +53,10 @@ export default class MateList extends Component {
   }
   get image() {
     return this.props.photo ? (
-      <Image source={{uri: this.props.photo}} style={[styles.photo]} />
+      <FastImage
+        source={{uri: this.props.photo, priority: FastImage.priority.normal}}
+        style={[styles.photo]}
+      />
     ) : (
       <IconContainer>
         <FontAwesomeIcon
@@ -86,7 +90,6 @@ export default class MateList extends Component {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         if (result.resPonseCode == 200) {
           this.setState({
             followYn: 'Y',
@@ -109,7 +112,6 @@ export default class MateList extends Component {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         if (result.resPonseCode == 200) {
           this.setState({
             followYn: 'N',

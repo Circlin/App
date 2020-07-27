@@ -7,6 +7,14 @@ export const storeData = async (key, value) => {
     // saving error
   }
 };
+export const storeDataObject = async (key, value) => {
+  try {
+    const jsonValue = JSON.stringify(value);
+    await AsyncStorage.setItem(key, jsonValue);
+  } catch (e) {
+    // saving error
+  }
+};
 export const getData = async (key) => {
   try {
     const value = await AsyncStorage.getItem(key);
@@ -19,41 +27,49 @@ export const getData = async (key) => {
     // error reading value
   }
 };
+export const getDataObject = async (key) => {
+  try {
+    const jsonValue = await AsyncStorage.getItem(key);
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch (e) {
+    // error reading value
+  }
+};
 export const tribeToCode = (object) =>
   ({
-    다이어터: '0',
-    유지어터: '1',
-    '간헐적 다이어터': '2',
-    비건: '3',
-    '클린푸드 매니아': '4',
-    보디빌더: '5',
-    파워리프터: '6',
-    러너: '7',
-    '요가/필라테스족': '8',
-    'MMA/격투가': '9',
-    종합레저인: '10',
-    'MTB/싸이클러': '11',
-    클라이머: '12',
-    '재활/교정인': '13',
-    기타: '14',
+    다이어터: '1',
+    유지어터: '2',
+    '간헐적 다이어터': '3',
+    비건: '4',
+    '클린푸드 매니아': '5',
+    보디빌더: '6',
+    파워리프터: '7',
+    러너: '8',
+    '요가/필라테스족': '9',
+    'MMA/격투가': '10',
+    종합레저인: '11',
+    'MTB/싸이클러': '12',
+    클라이머: '13',
+    '재활/교정인': '14',
+    기타: '15',
   }[object]);
 export const codeToTribe = (object) =>
   ({
-    0: '다이어터',
-    1: '유지어터',
-    2: '간헐적 다이어터',
-    3: '비건',
-    4: '클린푸드 매니아',
-    5: '보디빌더',
-    6: '파워리프터',
-    7: '러너',
-    8: '요가/필라테스족',
-    9: 'MMA/격투가',
-    10: '종합레저인',
-    11: 'MTB/싸이클러',
-    12: '클라이머',
-    13: '재활/교정인',
-    14: '기타',
+    1: '다이어터',
+    2: '유지어터',
+    3: '간헐적 다이어터',
+    4: '비건',
+    5: '클린푸드 매니아',
+    6: '보디빌더',
+    7: '파워리프터',
+    8: '러너',
+    9: '요가/필라테스족',
+    10: 'MMA/격투가',
+    11: '종합레저인',
+    12: 'MTB/싸이클러',
+    13: '클라이머',
+    14: '재활/교정인',
+    15: '기타',
     '': '',
   }[object]);
 export const birth = () => {
@@ -121,4 +137,23 @@ export const day = () => {
     {keyValue: '30', label: '30일', value: '30'},
     {keyValue: '31', label: '31일', value: '31'},
   ];
+};
+export const modifyData = (data) => {
+  const arr = [];
+  var tmp = [];
+  data.forEach((val, index) => {
+    if (val.IMG1TYPE == 'image') {
+      tmp.push(val);
+      if (tmp.length == 2) {
+        arr.push(tmp);
+        tmp = [];
+      }
+    }
+    if (val.IMG1TYPE == 'video') {
+      arr.push(val);
+      tmp = [];
+    }
+  });
+
+  return arr;
 };

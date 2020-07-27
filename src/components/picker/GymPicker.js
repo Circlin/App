@@ -97,7 +97,7 @@ class GymPicker extends Component {
       facil,
       firstQuery,
     } = this.state;
-    console.log(this.props.selectFacils);
+
     //  console.log(facilsList);
     return (
       <Container>
@@ -119,6 +119,9 @@ class GymPicker extends Component {
                 value={this.props.selectFacils}
                 onIconPress={() => {
                   this.props._searchFacils();
+                }}
+                handleClearPress={() => {
+                  console.log(11);
                 }}
               />
             </Dialog.Content>
